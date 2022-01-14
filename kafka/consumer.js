@@ -9,10 +9,13 @@ const kakfaConsumer = async (topic) => {
     await consumer.subscribe(topic)
 
     await consumer.run({
-
-        eachMessage: (message) => {
-            console.log("Received a message")
-            console.log(message.value.toString())
+        eachMessage: ({topic,partition,message}) => {
+            console.log("Message received: ", {
+                topic,
+                partition,
+                offset: message.offset,
+                value: message.value.toString()
+            })
         }
 
     })

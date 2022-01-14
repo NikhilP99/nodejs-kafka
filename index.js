@@ -17,7 +17,9 @@ app.get("/", (req, res) => {
     res.send("Message sent")
 })
 
-kakfaConsumer(topic)
+kakfaConsumer(topic).catch(err => {
+    console.log("Some error occurred while listening for messages: ", err)
+})
 
 const PORT = 5000
 app.listen(PORT, () => {
